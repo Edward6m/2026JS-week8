@@ -232,6 +232,32 @@ function displayCart(cart) {
   // ----------------------------------------
   // 商品總計：NT$ 1,600
   // 折扣後金額：NT$ 1,600
+
+  //判斷購物車是否為空（cart.carts 不存在或長度為 0）
+  if (!cart?.carts || cart?.carts.length === 0) {
+    console.log("購物車是空的");
+    return;
+  }
+  console.log("購物車內容：");
+  console.log("----------------------------------------");
+
+  // 顯示每個商品
+  cart.carts.forEach((item, index) => {
+    const productName = item?.product?.title;
+    const quantity = Number(item?.quantity);
+    const price = Number(item?.product?.price);
+    const subtotal = quantity * price;
+
+    console.log(`${index + 1}. ${productName}`);
+    console.log(`   數量：${quantity}`);
+    console.log(`   單價：${formatCurrency(price)}`);
+    console.log(`   小計：${formatCurrency(subtotal)}`);
+    console.log("----------------------------------------");
+  });
+
+  // 顯示總計
+  console.log(`商品總計：${formatCurrency(Number(cart?.total ?? 0))}`);
+  console.log(`折扣後金額：${formatCurrency(Number(cart?.final_total))}`);
 }
 
 module.exports = {

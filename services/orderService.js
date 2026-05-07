@@ -267,6 +267,38 @@ function displayOrders(orders) {
   // 商品明細：
   //   - 產品名稱 x 2（產品數量）
   // ========================================
+
+  if (!orders || orders.length === 0) {
+    console.log("沒有訂單");
+    return;
+  }
+  console.log("訂單列表：");
+  console.log("========================================");
+
+  const orderFormatted = formatOrder(orders);
+
+  // 顯示每個商品
+  orders.forEach((order, index) => {
+    console.log(`訂單 ${index + 1}`);
+    console.log("----------------------------------------");
+
+    // 使用 formatOrder() 格式化訂單資訊
+    console.log(formatOrder(order));
+
+    console.log("----------------------------------------");
+    console.log("商品明細：");
+
+    // 顯示商品列表
+    if (order.items && order.items.length > 0) {
+      order.items.forEach((item) => {
+        console.log(`  - ${item.name} x ${item.quantity}（產品數量）`);
+      });
+    } else {
+      console.log("  無商品資料");
+    }
+
+    console.log("========================================");
+  });
 }
 
 module.exports = {

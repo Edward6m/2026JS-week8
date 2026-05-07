@@ -231,11 +231,16 @@ function validateCartQuantity(quantity) {
  */
 function formatCurrency(amount) {
   // 請實作此函式
-  if (typeof amount !== "number" || isNaN(amount) || amount < 0) {
-    throw new Error("amount is not valid");
+  // 先轉成數字
+  let num = Number(amount);
+
+  // 驗證是否為有效數字
+  if (isNaN(num) || num < 0) {
+    num = isNaN(num) || num < 0 ? 0 : num;
   }
 
-  return `NT$ ${amount.toLocaleString("zh-TW")}`;
+  // 回傳台灣格式金額
+  return `NT$ ${num.toLocaleString("zh-TW")}`;
 }
 
 module.exports = {

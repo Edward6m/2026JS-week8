@@ -126,7 +126,7 @@ async function updateCartItem(cartId, quantity) {
   try {
     const { data } = await axios.patch(
       `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/carts`,
-      { data: { cartId, quantity } },
+      { data: { id: cartId, quantity } },
     );
 
     return {
